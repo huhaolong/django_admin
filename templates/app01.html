@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .table {
+            width: 200px;
+            height: 40px;
+            border: black solid 1px;
+            text-align: center;
+
+        }
+        .edit{
+            width: 70px;
+            height: 40px;
+            border: black solid 1px;
+            text-align: center;
+        }
+
+        .body{background-image:url(1.jpg);}
+
+            </style>
+
+
+
+</head>
+
+<body class="body">
+<div>
+
+
+<form action="/cmdb/ecs/" method="post">
+    <div style="height: 10px"></div>
+    <span><input type="text" name="name" placeholder="主机名称"></span>
+    <span><input type="text" name="outer_net" placeholder="外网IP"></span>
+    <span><input type="text" name="inner_mesh" placeholder="内网IP"></span>
+    <span><input type="text" name="configure" placeholder="配置"></span>
+
+    <span><input type="text" name="strip_width" placeholder="带宽"></span>
+    <span><input type="text" name="account_number" placeholder="账号"></span>
+    <span><input type="text" name="password" placeholder="密码"></span>
+    <input type="submit" value="添加主机">
+</form>
+
+<div style="height: 30px ;"></div>
+
+
+<table style="border: black solid 1px;">
+    <thead>
+    <tr>
+        <th class="table">主机名称</th>
+        <th class="table">外网 IP</th>
+        <th class="table">内网 IP</th>
+        <th class="table">配置</th>
+        <th class="table">带宽</th>
+        <th class="table">账号</th>
+        <th class="table">密码</th>
+        <th class="edit">编辑选项</th>
+        <th class="edit">删除选项</th>
+
+    </tr>
+    </thead>
+
+    {% for row in user_list %}
+        <tr>
+            <td class="table">{{ row.name }}</td>
+            <td class="table">{{ row.outer_net }}</td>
+            <td class="table">{{ row.inner_mesh }}</td>
+            <td class="table">{{ row.configure }}</td>
+            <td class="table">{{ row.strip_width }}</td>
+            <td class="table">{{ row.account_number }}</td>
+            <td class="table">{{ row.password }}</td>
+            <td class="edit"><a href="/cmdb/useredit-{{ row.id }}/">编辑</a></td>
+            <td class="edit"><a href="/cmdb/userdel-{{ row.id }}/">删除</a></td>
+        </tr>
+
+    {% endfor %}
+</table>
+</div>
+
+</body>
+</html>
